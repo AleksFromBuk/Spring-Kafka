@@ -31,11 +31,10 @@ public class KafkaConfig {
     Environment env;
 
     @Bean
-    NewTopic createTopic() {
-        return TopicBuilder.name("Product-created-events.topic")
+    public NewTopic productCreatedEventsTopicDLT() {
+        return TopicBuilder.name("Product-created-events.topic.DLT")
                 .partitions(3)
                 .replicas(3)
-                // минимальное кол-во синхронизированных с лидером серверов
                 .configs(Map.of("min.insync.replicas", "2"))
                 .build();
     }
