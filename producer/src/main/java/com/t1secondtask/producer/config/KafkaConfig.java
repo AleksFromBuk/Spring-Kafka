@@ -1,7 +1,7 @@
 package com.t1secondtask.producer.config;
 
 
-import com.t1secondtask.producer.event.DataMetricBatchEvent;
+import com.t1secondtask.modelsources.events.DataMetricBatchEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;

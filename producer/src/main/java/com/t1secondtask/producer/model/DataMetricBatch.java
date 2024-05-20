@@ -1,6 +1,7 @@
 package com.t1secondtask.producer.model;
 
-import com.t1secondtask.producer.event.DataMetricEvent;
+
+import com.t1secondtask.modelsources.events.DataMetricEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
