@@ -1,7 +1,7 @@
 package com.t1secondtask.consumer.controller;
 
 import com.t1secondtask.consumer.entity.DataMetricEntity;
-import com.t1secondtask.consumer.repository.DataMetricRepository;
+import com.t1secondtask.consumer.service.DataMetricService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,35 +15,35 @@ import java.util.List;
 @RequestMapping("/metrics")
 public class DataMetricController {
 
-    private final DataMetricRepository dataMetricRepository;
+    private final DataMetricService dataMetricService;
 
     @Autowired
-    public DataMetricController(DataMetricRepository dataMetricRepository) {
-        this.dataMetricRepository = dataMetricRepository;
+    public DataMetricController(DataMetricService dataMetricService) {
+        this.dataMetricService = dataMetricService;
     }
 
     @GetMapping
     public ResponseEntity<Iterable<DataMetricEntity>> getAllMetrics() {
-        return ResponseEntity.ok(dataMetricRepository.findAll());
+        return ResponseEntity.ok(dataMetricService.getAllMetrics());
     }
 
     @GetMapping("/{metricName}")
     public ResponseEntity<List<DataMetricEntity>> getMetricsByName(@PathVariable String metricName) {
-        return ResponseEntity.ok(dataMetricRepository.findAllByMetricName(metricName));
+        return ResponseEntity.ok((dataMetricService.getMetricByName(metricName)));
     }
 
     @GetMapping("/{metricName}/max")
     public ResponseEntity<Double> getMaxMeasurementByMetricName(@PathVariable String metricName) {
-        return ResponseEntity.ok(dataMetricRepository.findMaxMeasurementByMetricName(metricName));
+        return ResponseEntity.ok(dataMetricService.findMaxMeasurementByMetricName(metricName));
     }
 
     @GetMapping("/{metricName}/min")
     public ResponseEntity<Double> getMinMeasurementByMetricName(@PathVariable String metricName) {
-        return ResponseEntity.ok(dataMetricRepository.findMinMeasurementByMetricName(metricName));
+        return ResponseEntity.ok(dataMetricService.findMinMeasurementByMetricName(metricName));
     }
 
     @GetMapping("/{metricName}/avg")
     public ResponseEntity<Double> getAvgMeasurementByMetricName(@PathVariable String metricName) {
-        return ResponseEntity.ok(dataMetricRepository.findAvgMeasurementByMetricName(metricName));
+        return ResponseEntity.ok(dataMetricService.findAvgMeasurementByMetricName(metricName));
     }
 }

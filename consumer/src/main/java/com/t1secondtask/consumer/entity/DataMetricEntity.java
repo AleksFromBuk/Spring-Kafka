@@ -2,6 +2,7 @@ package com.t1secondtask.consumer.entity;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,8 @@ public class DataMetricEntity {
     private UUID id;
     @NotNull
     private String metricName;
-    @ElementCollection
+
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> tags = new HashMap<>();
     @NotNull
     private double measurement;
