@@ -2,7 +2,6 @@ package com.t1secondtask.consumer.config;
 
 import com.t1secondtask.consumer.exceptions.NonRetryableException;
 import com.t1secondtask.consumer.exceptions.RetryableException;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.DefaultErrorHandler;
@@ -30,14 +28,14 @@ public class KafkaConfig {
     @Autowired
     Environment env;
 
-    @Bean
-    public NewTopic productCreatedEventsTopicDLT() {
-        return TopicBuilder.name("Product-created-events.topic.DLT")
-                .partitions(3)
-                .replicas(3)
-                .configs(Map.of("min.insync.replicas", "2"))
-                .build();
-    }
+//    @Bean
+//    public NewTopic productCreatedEventsTopicDLT() {
+//        return TopicBuilder.name("Product-created-events.topic.DLT")
+//                .partitions(3)
+//                .replicas(3)
+//                .configs(Map.of("min.insync.replicas", "1"))
+//                .build();
+//    }
 
     @Bean
     ConsumerFactory<String, Object> consumerFactory() {

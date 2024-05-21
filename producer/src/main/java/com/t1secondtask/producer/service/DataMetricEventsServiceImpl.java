@@ -36,7 +36,7 @@ public class DataMetricEventsServiceImpl implements DataMetricEventsService {
     }
 
     private void scheduleDataMetricEvents() {
-        taskScheduler.scheduleAtFixedRate(this::createAndSendDataMetricEvents, Instant.now(), Duration.ofSeconds(100));
+        taskScheduler.scheduleAtFixedRate(this::createAndSendDataMetricEvents, Instant.now(), Duration.ofSeconds(3));
     }
 
     @Override

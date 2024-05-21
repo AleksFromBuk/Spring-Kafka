@@ -33,7 +33,7 @@ public class KafkaConfig {
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, valueSerializer,
                 ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true",
                 ProducerConfig.ACKS_CONFIG, "all",
-                ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 10000,
+                ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 15000,
                 ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000,
                 ProducerConfig.LINGER_MS_CONFIG, 5000
         );
@@ -52,7 +52,7 @@ public class KafkaConfig {
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
-        scheduler.setPoolSize(10); // Настройка размера пула потоков
+        scheduler.setPoolSize(4); // Настройка размера пула потоков
         scheduler.setThreadNamePrefix("MetricsTask-");
         scheduler.initialize();
         return scheduler;
