@@ -21,7 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class DataMetricEntity {
     @Id
-    @UuidGenerator
+    //@UuidGenerator
     private UUID id;
     @NotNull
     private String metricName;

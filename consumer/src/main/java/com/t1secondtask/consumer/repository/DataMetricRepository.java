@@ -7,12 +7,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface DataMetricRepository extends CrudRepository<DataMetricEntity, Long> {
-    Optional<DataMetricEntity> findByMetricName(String metricName);
-
+public interface DataMetricRepository extends CrudRepository<DataMetricEntity, UUID> {
     List<DataMetricEntity> findAllByMetricName(String metricName);
 
     @Query("SELECT MAX(d.measurement) FROM DataMetricEntity d WHERE d.metricName = :metricName")
